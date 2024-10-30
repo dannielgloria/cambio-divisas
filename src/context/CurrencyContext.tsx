@@ -1,21 +1,42 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, ReactNode, Dispatch, SetStateAction } from 'react';
 
-export const CurrencyContext = createContext();
+interface CurrencyContextProps {
+    currencies: Record<string, any>;
+    setCurrencies: Dispatch<SetStateAction<Record<string, any>>>;
+    selectedCurrency: string;
+    setSelectedCurrency: Dispatch<SetStateAction<string>>;
+    selectedDate: string;
+    setSelectedDate: Dispatch<SetStateAction<string>>;
+    rates: Record<string, any>;
+    setRates: Dispatch<SetStateAction<Record<string, any>>>;
+}
 
-export const CurrencyProvider = ({ children }) => {
-    const [currencies, setCurrencies] = useState({});
-    const [selectedCurrency, setSelectedCurrency] = useState('USD');
-    const [selectedDate, setSelectedDate ] = useState( new Date().toISOString().slice(0,10));
-    const [rates, setRates] = useState({});
+export const CurrencyContext = createContext<CurrencyContextProps | undefined>(undefined);
 
-    return(
-        <CurrencyContext.Provider value={{
-            currencies, setCurrencies,
-            selectedCurrency, setSelectedCurrency,
-            selectedDate, setSelectedDate,
-            rates, setRates
-        }}>
+interface CurrencyProviderProps {
+    children: ReactNode;
+}
+
+export const CurrencyProvider: React.FC<CurrencyProviderProps> = ({ children }) => {
+    const [currencies, setCurrencies] = useState<Record<string, any>>({});
+    const [selectedCurrency, setSelectedCurrency] = useState<string>('USD');
+    const [selectedDate, setSelectedDate] = useState<string>(new Date().toISOString().slice(0, 10));
+    const [rates, setRates] = useState<Record<string, any>>({});
+
+    return (
+        <CurrencyContext.Provider
+            value={{
+                currencies,
+                setCurrencies,
+                selectedCurrency,
+                setSelectedCurrency,
+                selectedDate,
+                setSelectedDate,
+                rates,
+                setRates
+            }}
+        >
             {children}
         </CurrencyContext.Provider>
-    )
+    );
 };
