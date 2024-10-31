@@ -1,6 +1,6 @@
 import React, { createContext, useState, ReactNode, Dispatch, SetStateAction } from 'react';
 
-interface CurrencyContextProps {
+export interface CurrencyContextProps {
     currencies: Record<string, any>;
     setCurrencies: Dispatch<SetStateAction<Record<string, any>>>;
     selectedCurrency: string;
