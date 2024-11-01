@@ -1,0 +1,26 @@
+@import '../scss/variables';
+
+.login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: $background-color; // Define el color de fondo según el tema
+    padding: 20px;
+  
+    .login-container {
+      width: 100%;
+      max-width: 360px;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      background-color: $container-bg; // Define el fondo del contenedor
+  
+      h1 {
+        text-align: center;
+        margin-bottom: 24px;
+        color: $text-color; // Define el color del texto
+      }
+    }
+  }
+  

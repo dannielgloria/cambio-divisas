@@ -1,0 +1,23 @@
+.rotating-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150px; // Ajusta según el contenedor deseado
+    margin-bottom: 15px;
+    margin-top: 15px;
+  }
+  
+  .rotating-image {
+    width: 150px; // Ajusta el tamaño de la imagen según lo necesites
+    animation: rotate 4s linear infinite;
+  }
+  
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
