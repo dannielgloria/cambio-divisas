@@ -8,6 +8,7 @@ export const fetchCurrecies = async () => {
         return response.data;
     } catch (error) {
         console.log('Error fetching currencies: ', error);
+        throw error;
     }
 };
 
@@ -17,6 +18,7 @@ export const fetchRates = async (date: string, base: string, symbols: string) =>
         return response.data;
     } catch (error) {
         console.log('Error fetching currencies: ', error);
+        throw error;
     }
 };
 
