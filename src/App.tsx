@@ -4,9 +4,19 @@ import Home from './pages/Home';
 import { CurrencyProvider } from './context/CurrencyContext';
 import LoginPage from './pages/LoginPage';
 import PrivateRoute from './components/PrivateRoute';
+import './scss/global.scss'
+import { createTheme, CssBaseline, ThemeProvider } from '@mui/material';
+
+const darkTheme = createTheme({
+  palette:{
+    mode: 'dark',
+  }
+})
 
 const App: React.FC = () => {
     return (
+      <ThemeProvider theme={darkTheme}>
+        <CssBaseline />
         <CurrencyProvider>
             <Router>
                 <Routes>
@@ -18,6 +28,7 @@ const App: React.FC = () => {
                 </Routes>
             </Router>
         </CurrencyProvider>
+      </ThemeProvider>
     );
 };
 

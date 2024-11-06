@@ -41,7 +41,7 @@ export const LoginForm: React.FC = () => {
             onChange={(e) => setPassword(e.target.value)}
             fullWidth
             />
-            <div>
+            <div className="button-container">
                 <Button
                 onClick={handleLogin}
                 variant="contained"
