@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { login } from "../../redux/authSlice";
 import './LoginForm.scss'
 import { useReduxSelector, useReduxDispach } from '../../hooks/reduxHooks';
+import { Button, TextField } from "@mui/material";
 
 export const LoginForm: React.FC = () => {
     const [username, setUsername] = useState('');
@@ -23,6 +24,32 @@ export const LoginForm: React.FC = () => {
     }
     
     return(
-        <h1>Esta vivo</h1>
+        <div className="login-form">
+            <TextField 
+            label='Username'
+            value={username}
+            className="select-field"
+            onChange={(e) => setUsername(e.target.value)}
+            fullWidth
+            />
+
+            <TextField 
+            label='Contraseña'
+            type="password"
+            value={password}
+            className="select-field"
+            onChange={(e) => setPassword(e.target.value)}
+            fullWidth
+            />
+            <div>
+                <Button
+                onClick={handleLogin}
+                variant="contained"
+                color="primary"
+                >Entrar</Button>
+            </div>
+            {error && <p>Username o contraseña incorrectos, intenta de nuevo</p>}
+
+        </div>
     )
 }
