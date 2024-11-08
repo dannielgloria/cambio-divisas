@@ -1,3 +1,8 @@
+## Nota:
+Para la ejecucion de nuestro proyecto es necesario el uso de la variable de entorno llamada
+
+BASE_URL
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
