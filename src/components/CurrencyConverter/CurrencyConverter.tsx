@@ -14,6 +14,7 @@ const CurrencyConverter: React.FC = () => {
     const {
         currencies, setCurrencies,
         selectedCurrency, setSelectedCurrency,
+        baseCurrency, setBaseCurrency,
         selectedDate, setSelectedDate,
         rates, setRates
     } = context;
@@ -35,11 +36,15 @@ const CurrencyConverter: React.FC = () => {
 
     const handleConvert = async () => {
         try {
-            const data = await fetchRates(selectedDate, 'EUR', selectedCurrency)
+            const data = await fetchRates(selectedDate, baseCurrency, selectedCurrency)
             setRates(data.rates);
         } catch (err) {
             setError('Error al convertir las monedas')
         }
+    }
+
+    const handleBaseCurrencyChange = (e: ChangeEvent<HTMLInputElement>) => {
+        setBaseCurrency(e.target.value)
     }
 
     const handleCurrencyChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -56,6 +61,22 @@ const CurrencyConverter: React.FC = () => {
             <TextField
                 select
                 label="Moneda base"
+                value={baseCurrency}
+                onChange={handleBaseCurrencyChange}
+                variant="outlined"
+                fullWidth
+                className="select-field"
+            >
+                {Object.keys(currencies).map((key) =>(
+                    <MenuItem
+                    key={key}
+                    value={key}
+                    >{currencies[key]}</MenuItem>
+                ))}
+            </TextField>
+            <TextField
+                select
+                label="Moneda destino"
                 value={selectedCurrency}
                 onChange={handleCurrencyChange}
                 variant="outlined"
@@ -92,7 +113,7 @@ const CurrencyConverter: React.FC = () => {
                         {Object.entries(rates).map(([key, value])=>(
                             <TableRow key={key}>
                                 <TableCell component='th' scope="row">
-                                    {`1 EUR a ${selectedCurrency}`}
+                                    {`1 ${baseCurrency} a ${selectedCurrency}`}
                                 </TableCell>
                                 <TableCell align="right">
                                     {`${value} ${key}`}
