@@ -1,0 +1,35 @@
+# Este workflow de git hub actios funciona tomando en cuenta que no existe DOcker en nuesto desarrolL
+
+name: Despliegue sin docker de desarrollo react en develop
+
+on:
+  push:
+    branches:
+      - develop
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Revisar codigo
+        uses: actions/checkout@v3
+      
+      - name: Alistar Node.js / Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.8
+
+      - name: Instala dependencias
+        run: npm install
+
+      - name: Ejecuta pruebas
+        run: npm test
+
+      - name: Crea el proyecto / Build Project
+        run: npm run build
+
+      
